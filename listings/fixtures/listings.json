@@ -1,0 +1,28 @@
+[{
+  "pk": 1,
+  "model": "listings.listing",
+  "fields": {
+    "name": "Criss Crisps",
+    "address": "Unit 2, Dundrum Business Centre, Dublin 16, 54321, Ireland",
+    "phone": "01-6287237",
+    "website": "www.crisscrisps.ie",
+    "email": "info@crisscrisps.ie",
+    "business_hours": "08.00-18.00",
+    "category": 1,
+    "about": "We make the most delicious potato crisps in Ireland."
+  }
+},
+{
+  "pk": 1,
+  "model": "listings.listing",
+  "fields": {
+    "name": "The Black Forest Bakery",
+    "address": "1, The Harbour, Kilcock, Co. Kildare, W23 Y1F7",
+    "phone": "01-6287835",
+    "website": "www.blackforestbakery.ie",
+    "email": "info@blackforestbakery.ie",
+    "business_hours": "08.00-18.00",
+    "category": 1,
+    "about": "Great Coffee, Deliciously Fresh Soup, Sandwiches and Salads... and Amazing Cakes! What's not to love?"
+  }
+}]
