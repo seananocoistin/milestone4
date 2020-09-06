@@ -37,3 +37,9 @@ We continually tweak and adjust this template to help give you the best experien
 --------
 
 Happy coding!
+
+Code for Django Phone Field
+https://pypi.org/project/django-phone-field/
+
+Code for Django website field
+https://www.geeksforgeeks.org/urlfield-django-models/
