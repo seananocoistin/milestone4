@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Order, OrderLineItem
 
-# Register your models here.
+class OrderAmdin(admin.ModelAdmin)
+    readonly_fields 
