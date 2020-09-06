@@ -1,9 +1,12 @@
 from django.shortcuts import render, redirect, reverse, get_object_or_404
 from django.contrib import messages
 from django.db.models import Q
+from django.db.models.functions import Lower
+
 from .models import Listing, Category
 
 # Create your views here.
+
 
 def all_listings(request):
 
@@ -54,6 +57,7 @@ def all_listings(request):
     }
     
     return render(request, 'listings/listings.html')
+
 
 def listing_detail(request, listing_id):
 
