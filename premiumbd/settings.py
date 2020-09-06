@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'listings',
     'phone_field',
     'cart',
+    'checkout',
 ]
 
 MIDDLEWARE = [
