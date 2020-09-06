@@ -41,7 +41,7 @@ def all_listings(request):
         if 'q' in request.GET:
             query = request.GET['q']
             if not query:
-                messages.erro(request, "No search words were entered")
+                messages.error(request, "No search words were entered")
                 return redirect(reverse('listings'))
             
             queries = Q(name__icontains=query) | Q(description__icontains=query)
