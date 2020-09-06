@@ -68,7 +68,7 @@ def checkout(request):
                                 listing_size=size,
                             )
                             order_line_item.save()
-                except Listing.DoesNotExist:
+                except listing.DoesNotExist:
                     messages.error(request, (
                         "One of the listings in your cart wasn't found in our database. "
                         "Please call us for assistance!")
