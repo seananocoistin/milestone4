@@ -20,7 +20,8 @@ def all_listings(request):
             if sortkey == 'name':
                 sortkey = 'lower_name'
                 listings = listings.annotate(lower_name=Lower('name'))
-
+            if sortkey == 'category':
+                sortkey = 'category_name'
             if 'direction' in request.GET:
                 direction = request.GET['direction']
                 if direction == 'desc':
