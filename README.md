@@ -74,6 +74,8 @@ The technologies that will be used in the project will be listed here.
 
 [Heroku](https.heroku.com) - used to host the website.
 
+https://miniwebtool.com/django-secret-key-generator/
+
 Code for Django Phone Field
 https://pypi.org/project/django-phone-field/
 

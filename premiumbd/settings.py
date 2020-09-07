@@ -167,7 +167,21 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # Stripe
 STRIPE_CURRENCY = 'eur'
-STRIPE_PUBLIC_KEY = os.getenv('STRIPE_PUBLIC_KEY', '')
-STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY', '')
-STRIPE_WH_SECRET = os.getenv('STRIPE_WH_SECRET', '')
-DEFAULT_FROM_EMAIL = 'premiumbd@example.com'
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY", "pk_test_51HOPTbISk250XzF1ywLmLpkOAiXh7sLSMRv4TgcmaBnYkPS4PIp5a0zJCrswAN6pRfHEZeFCLuG71RO1DOh5yuLp00fibCWbem")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "sk_test_51HOPTbISk250XzF1E4wXttTqznsQ8Uw5ADXxsyHu9PbuvvfMk2a6T3AYMCrcReC2dHP2kCIybSBkzuodf89ONbk000yLRnISsE")
+STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", "pk_test_51HOPTbISk250XzF1ywLmLpkOAiXh7sLSMRv4TgcmaBnYkPS4PIp5a0zJCrswAN6pRfHEZeFCLuG71RO1DOh5yuLp00fibCWbem")
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "sk_test_51HOPTbISk250XzF1E4wXttTqznsQ8Uw5ADXxsyHu9PbuvvfMk2a6T3AYMCrcReC2dHP2kCIybSBkzuodf89ONbk000yLRnISsE")
+STRIPE_LIVE_MODE = False  # Change to True in production
+DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"
+
+if 'DEVELOPMENT' in os.environ:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+    DEFAULT_FROM_EMAIL = 'premiumbd@example.com'
+else:
+    EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_USE_TLS = True
+    EMAIL_PORT = 587
+    EMAIL_HOST = 'smtp.gmail.com'
+    EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+    EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASS')
+    DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
