@@ -1,0 +1,1 @@
+web: gunicorn premiumbdhe.wsgi:application
