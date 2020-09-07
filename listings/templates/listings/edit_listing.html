@@ -33,8 +33,8 @@
                         {% endif %}
                     {% endfor %}
                     <div class="text-right">
-                        <a class="btn btn-outline-black rounded-0" href="{% url 'listings' %}">Cancel</a>
-                        <button class="btn btn-black rounded-0" type="submit">Update the Listing</button>
+                        <button class="btn btn-danger rounded-0" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update the Listing</button>
+                        <a class="btn btn-outline-black rounded-0" href="{% url 'listings' %}"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancel</a> 
                     </div>
                 </form>
             </div>

@@ -72,16 +72,11 @@
                                                 </a>
                                             </p>
                                             {% endif %}
-                                            {% if listing.rating %}
-                                                <small class="text-muted"><i class="fas fa-star mr-1"></i>{{ listing.rating }} / 5</small>
-                                            {% else %}
-                                                <small class="text-muted">No Rating</small>
-                                            {% endif %}
                                             {% if request.user.is_superuser %}
-                                                <small class="ml-3">
-                                                    <a href="{% url 'edit_listing' listing.id %}">Edit</a> |
-                                                    <a class="text-danger" href="{% url 'delete_listing' listing.id %}">Delete</a>
-                                                </small>
+                                            <div class="text-right">
+                                                <button class="btn btn-danger rounded-0" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update the Listing</button>
+                                                <a class="btn btn-outline-black rounded-0" href="{% url 'listings' %}"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancel</a> 
+                                                </div>
                                             {% endif %}
                                         </div>
                                     </div>
