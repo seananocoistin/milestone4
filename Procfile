@@ -1,1 +1,1 @@
-web: gunicorn premiumbdhe.wsgi:application
+web: gunicorn premiumbd.wsgi:application
