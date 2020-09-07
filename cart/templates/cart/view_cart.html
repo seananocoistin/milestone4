@@ -38,8 +38,17 @@
 
                             {% for item in cart_items %}
                                 <tr>
+                                    <td class="p-3 w-25">
+                                        {% if item.listing.image %}
+                                        <img class="img-fluid rounded" src="{{ item.listing.image.url }}" alt="{{ item.listing.name }}">
+                                        {% else %}
+                                        <img class="img-fluid rounded" src="{{ MEDIA_URL }}noimage.png" alt="{{ item.listing.name }}">
+                                        {% endif %}
+                                    </td>
                                     <td class="py-3">
                                         <p class="my-0"><strong>{{ item.listing.name }}</strong></p>
+                                        <p class="my-0"><strong>Size: </strong>{% if item.listing.has_sizes %}{{ item.size|upper }}{% else %}N/A{% endif %}</p>
+                                        <p class="my-0 small text-muted">SKU: {{ item.listing.sku|upper }}</p>
                                     </td>
                                     <td class="py-3">
                                         <p class="my-0">€{{ item.listing.price }}</p>
@@ -69,6 +78,9 @@
                                                             </span>
                                                         </button>
                                                     </div>
+                                                    {% if item.listing.has_sizes %}
+                                                        <input type="hidden" name="listing_size" value="{{ item.size }}">
+                                                    {% endif %}
                                                 </div>
                                             </div>
                                         </form>
@@ -112,7 +124,7 @@
                     </div>
                 {% else %}
                     <p class="lead mb-5">Your cart is empty.</p>
-                    <a href="{% url 'account_signup' %}" class="btn btn-outline-black rounded-0 btn-lg">
+                    <a href="{% url 'sign_up' %}" class="btn btn-outline-black rounded-0 btn-lg">
                         <span class="icon">
                             <i class="fas fa-chevron-left"></i>
                         </span>
