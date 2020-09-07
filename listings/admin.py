@@ -6,11 +6,7 @@ from .models import Listing, Category
 class ListingAdmin(admin.ModelAdmin):
     list_display = (
         'name',
-        'address',
-        'category',
     )
-
-    ordering = ('name',)
 
 class CategoryAdmin(admin.ModelAdmin):
     list_display = (

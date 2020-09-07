@@ -6,8 +6,6 @@ from django.db.models.functions import Lower
 from .models import Listing, Category
 from .forms import ListingForm
 
-# Create your views here.
-
 def all_listings(request):
     """ A view to show all listings, including sorting and search queries """
 
@@ -119,5 +117,5 @@ def delete_listing(request, listing_id):
     """ Delete a listing from the store """
     listing = get_object_or_404(Listing, pk=listing_id)
     listing.delete()
-    messages.success(request, 'Listing deleted!')
+    messages.success(request, 'listing deleted!')
     return redirect(reverse('listings'))

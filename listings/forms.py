@@ -5,6 +5,7 @@ from .models import Listing, Category
 class ListingForm(forms.ModelForm):
 
     class Meta:
+   
         model = Listing
         fields = '__all__'
 
