@@ -111,7 +111,7 @@ input[name='q']::placeholder {
 .message-container {
     position: fixed;
     top: 72px;
-    right: 15px;
+    right: 20px;
     z-index: 99999999999;
 }
 
