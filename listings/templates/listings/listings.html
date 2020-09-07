@@ -54,11 +54,9 @@
                             <div class="card h-100 border-0">
                                 {% if listing.image %}
                                 <a href="{% url 'listing_detail' listing.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ listing.image.url }}" alt="{{ listing.name }}">
                                 </a>
                                 {% else %}
                                 <a href="{% url 'listing_detail' listing.id %}">
-                                    <img class="card-img-top img-fluid" src="{{ MEDIA_URL }}noimage.png" alt="{{ listing.name }}">
                                 </a>
                                 {% endif %}
                                 <div class="card-body pb-0">
