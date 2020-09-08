@@ -2,15 +2,8 @@
 {% load static %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'listings/css/checkout.css' %}">
 {% endblock %}
-
-
-{% block extra_js %}
-    <script src="https://js.stripe.com/v3/"></script>
-    <script src="{% static 'js/client.js' %}" defer></script>
-{% endblock %}
-
 
 {% block page_header %}
     <div class="container header-container">
@@ -26,8 +19,8 @@
         <div class="row">
             <div class="col-12 col-md-6">
                 <hr>
-                <h2 class="logo-font mb-4">Listing Editing</h2>
-                <h5 class="text-muted">Add a Listing</h5>
+                <h2 class="logo-font mb-4">Create a Listing</h2>
+                <h5 class="text-muted">Enter your information in the form below and pay at the bottom</h5>
                 <hr>
             </div>
         </div>
@@ -43,9 +36,20 @@
                             {{ field }}
                         {% endif %}
                     {% endfor %}
+                <h5>Pay for the listing here</h5>
+                <form id="payment-form">
+                <div id="card-element">
+                    <!-- Elements will create input elements here -->
+                </div>
+
+                <!-- We'll put the error messages in this element -->
+                <div id="card-errors" role="alert"></div>
+                <br>
+                <p>By pressing Pay below you will pay for the listing and it will be published.</p>
+                <button class="btn btn-black rounded-0" type="submit" id="submit">Pay</button>
+                </form>
                     <div class="text-right">
                         <a class="btn btn-outline-black rounded-0" href="{% url 'listings' %}">Cancel</a>
-                        <button class="btn btn-black rounded-0" type="submit">Add the Listing</button>
                     </div>
                 </form>
             </div>
@@ -58,5 +62,4 @@
     {{ stripe_public_key|json_script:"id_stripe_public_key" }}
     {{ client_secret|json_script:"id_client_secret" }}
     <script src="{% static 'listings/js/stripe_elements.js' %}"></script>
-    
 {% endblock %}
