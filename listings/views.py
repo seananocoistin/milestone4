@@ -7,8 +7,6 @@ from django.db.models.functions import Lower
 
 from .models import Listing, Category
 from .forms import ListingForm
-from checkout.forms import OrderForm
-from checkout.models import Order, OrderLineItem
 
 from .models import Listing
 from profiles.models import UserProfile
