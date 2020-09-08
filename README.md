@@ -11,13 +11,13 @@
 ## Table of Contents
 
 * [About the Project](#about-the-project)
-* [User stories](#user-stories)
-* [Motivation](#motivation)
-* [Code Example](#code-example)
-* [Roadmap](#roadmap)
+* [User Experience](#user-experience)
 * [Inspiration](#inspiration)
+* [Testing](#testing)
+* [Wireframes](#wireframes)
+* [Future Development](#future-development)
+* [Technologies](#technologies)
 * [Author](#author)
-* [Contact](#contact)
 
 ## Welcome
 
@@ -47,18 +47,35 @@ The information in the entries should be clearly laid out and easy to read.
 
     - #### Imagery
     The image on the home page is of the Grand Canal dock area in Dublin. It shows the modern architecture and urban landscape in an area of the city that is full of leading international companies. I felt that this image would be a nice introduction to the website as well as giving a hint of a place that professionals would want to use when searching for a business online.
+
 ## Inspiration
 I was inspired to make the business directory as I came across a business directory that was very clumsy and shoddy in the way that it was designed. I particularly like the [Manta business directory](http://www.manta.com).
 
 ## Testing
-Html files were put through the HTML Validator to ensure that they were correct and error free.
-The logging in and creation of new listings generated plenty of errors and those files had to be changed numerous times in order to get them to function as desired.
-The layout and appearance underwent considerable change during the design. As more pages and functions were added to the website, the appearance was found unsuitable so a new approach had to be undertaken. That is why the background image was removed and gradient colours were placed as a background.
+The testing consisted of three areas:
+ - (i) Registration and logging in
+ - (ii) Adding a listing
+ - (iii) Stripe payments
+
+ (i) Registration and logging in
+
+ Users need to be able to register a new account and sign in and out. This was tried and tested with various real and fake e-mail addresses. It works.
+ 
+ (ii) Adding a listing
+
+ When users sign in, they are presented with a Create Listing page where they can fill out a form to create a listing in directory. The form is easy to use and it allows the business owner lots of space in the textarea to describe their business in their own words.
+ 
+ (iii) Stripe payments
+
+ [Stripe test image](https://github.com/seananocoistin/milestone4/blob/master/stripetest.png)
+
+ The user needs to pay for the listing. This is kept as easy as possible by creating and paying for the listing on the same page. The Stripe system was tested for incorrect credit card numbers (see image).
+
 The static and media files would not show up from AWS. This is infuriating as the keys and code are correct. The rough solution for that was to use inline CSS styling and to provide a direct link to the image that is the background on the home page. It is shocking that AWS would let me down like this but there is a way to get around it.
 
 
 ## Wireframes
-
+See the wireframes in the Github folders.
 
 ## Future Development
 The current website, as is stands, is to represent how a directory would function. The plan for future development is to add to the website and the directory so that it has more functions such being able to add photographs to the listings, being able to pay for a premium listing on the home page, more categories and filters so that users can search more to find their desired business. Users would be able to navigate the website better with buttons in order to move listings.
@@ -94,6 +111,8 @@ The technologies that the site was built and designed with are:
 
 [Heroku](https.heroku.com) - used to host the website.
 
+[Amazon Web Services](https://aws.amazon.com/) - used to host the static and media files but it did not work for this project :-(
+
 [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/) - used to generate a secret key for Django.
 
 [Temp Mail](https://temp-mail.org/) - used to generate a temporary e-mail address in order to begin using Stripe.
@@ -109,4 +128,3 @@ https://www.geeksforgeeks.org/urlfield-django-models/
 
 ## Author
 Seanán Ó Coistín
-
