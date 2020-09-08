@@ -67,7 +67,7 @@ The testing consisted of three areas:
  
  (iii) Stripe payments
 
- [Stripe test image](https://github.com/seananocoistin/milestone4/blob/master/stripetest.png)
+ [Stripe test image](https://github.com/seananocoistin/milestone4/blob/master/projectimages/stripetest.png)
 
  The user needs to pay for the listing. This is kept as easy as possible by creating and paying for the listing on the same page. The Stripe system was tested for incorrect credit card numbers (see image).
 
