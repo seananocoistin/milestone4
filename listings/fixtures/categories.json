@@ -1,2 +1,6 @@
 [{"pk": 1, "model": "listings.category", "fields": {"name": "product", "friendly_name": "Product"}},
-{"pk": 2, "model": "listings.category", "fields": {"name": "service", "friendly_name": "Service"}}]
+{"pk": 2, "model": "listings.category", "fields": {"name": "service", "friendly_name": "Service"}},
+{"pk": 3, "model": "listings.category", "fields": {"name": "beauty", "friendly_name": "Beauty"}},
+{"pk": 4, "model": "listings.category", "fields": {"name": "restaurant", "friendly_name": "Café/Restaurant"}},
+{"pk": 5, "model": "listings.category", "fields": {"name": "landscaping", "friendly_name": "Landscaping"}},
+{"pk": 6, "model": "listings.category", "fields": {"name": "clothes", "friendly_name": "Clothes"}}]
