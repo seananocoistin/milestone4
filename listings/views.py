@@ -1,10 +1,22 @@
-from django.shortcuts import render, redirect, reverse, get_object_or_404
+from django.shortcuts import render, redirect, reverse, get_object_or_404, HttpResponse
+from django.views.decorators.http import require_POST
 from django.contrib import messages
+from django.conf import settings
 from django.db.models import Q
 from django.db.models.functions import Lower
 
 from .models import Listing, Category
 from .forms import ListingForm
+from checkout.forms import OrderForm
+from checkout.models import Order, OrderLineItem
+
+from .models import Listing
+from profiles.models import UserProfile
+from profiles.forms import UserProfileForm
+
+import stripe
+import json
+
 
 def all_listings(request):
     """ A view to show all listings, including sorting and search queries """
@@ -55,7 +67,6 @@ def all_listings(request):
 
     return render(request, 'listings/listings.html', context)
 
-
 def listing_detail(request, listing_id):
     """ A view to show individual listing details """
 
@@ -69,7 +80,7 @@ def listing_detail(request, listing_id):
 
 
 def add_listing(request):
-    """ Add a listing to the store """
+    """ Add a listing to the store and pay for it """
     if request.method == 'POST':
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
@@ -87,7 +98,6 @@ def add_listing(request):
     }
 
     return render(request, template, context)
-
 
 def edit_listing(request, listing_id):
     """ Edit a listing in the store """
