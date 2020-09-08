@@ -54,6 +54,8 @@ I was inspired to make the business directory as I came across a business direct
 Html files were put through the HTML Validator to ensure that they were correct and error free.
 The logging in and creation of new listings generated plenty of errors and those files had to be changed numerous times in order to get them to function as desired.
 The layout and appearance underwent considerable change during the design. As more pages and functions were added to the website, the appearance was found unsuitable so a new approach had to be undertaken. That is why the background image was removed and gradient colours were placed as a background.
+The static and media files would not show up from AWS. This is infuriating as the keys and code are correct. The rough solution for that was to use inline CSS styling and to provide a direct link to the image that is the background on the home page. It is shocking that AWS would let me down like this but there is a way to get around it.
+
 
 ## Wireframes
 
