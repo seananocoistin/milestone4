@@ -80,7 +80,9 @@ def listing_detail(request, listing_id):
 
 
 def add_listing(request):
-    """ Add a listing to the store and pay for it """
+    stripe_public_key = settings.STRIPE_PUBLIC_KEY
+    stripe_secret_key = settings.STRIPE_SECRET_KEY
+    
     if request.method == 'POST':
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
@@ -102,7 +104,6 @@ def add_listing(request):
 
 
 def edit_listing(request, listing_id):
-    """ Edit a listing in the store """
     listing = get_object_or_404(Listing, pk=listing_id)
     if request.method == 'POST':
         form = ListingForm(request.POST, request.FILES, instance=listing)
@@ -126,8 +127,7 @@ def edit_listing(request, listing_id):
 
 
 def delete_listing(request, listing_id):
-    """ Delete a listing from the store """
     listing = get_object_or_404(Listing, pk=listing_id)
     listing.delete()
-    messages.success(request, 'listing deleted!')
+    messages.success(request, 'Listing deleted!')
     return redirect(reverse('listings'))
