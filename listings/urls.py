@@ -7,4 +7,6 @@ urlpatterns = [
     path('add/', views.add_listing, name='add_listing'),
     path('edit/<int:listing_id>/', views.edit_listing, name='edit_listing'),
     path('delete/<int:listing_id>/', views.delete_listing, name='delete_listing'),
+    path('create-session', views.create_session),
+    path('payment/<int:listing_id>', views.listing_payment, name='listing_payment')
 ]

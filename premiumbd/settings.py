@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', '')
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['premiumbd.herokuapp.com', 'localhost']
 
@@ -155,11 +155,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+# STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 if 'USE_AWS' in os.environ:
     # Cache control
     AWS_S3_OBJECT_PARAMETERS = {
@@ -186,15 +186,12 @@ if 'USE_AWS' in os.environ:
     
 
 
-
-
-
 # Stripe
 STRIPE_CURRENCY = 'eur'
-STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY","")
-STRIPE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "")
-STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", "")
-STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "")
+STRIPE_PUBLIC_KEY = os.environ.get("STRIPE_LIVE_PUBLIC_KEY","pk_live_51Hajj1EeGWW2U2ijFSkWM5IAXUYYKAMlsAaYCkSvzMA4z2k8siV9mgNlYl2JutyoRqTNBSfRLnc8Ux5Wkqg0oKw30064L9Np2d")
+STRIPE_SECRET_KEY = os.environ.get("STRIPE_LIVE_SECRET_KEY", "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")
+STRIPE_TEST_PUBLIC_KEY = os.environ.get("STRIPE_TEST_PUBLIC_KEY", "pk_test_51Hajj1EeGWW2U2ijXk2jm99wNvlnzus19mHXossUxutkpVDlphttnmXvI7qah16tVVaDyL1GLbVAlxL4gt3qOyaq00OgsCCQgs")
+STRIPE_TEST_SECRET_KEY = os.environ.get("STRIPE_TEST_SECRET_KEY", "sk_test_51Hajj1EeGWW2U2ijI5mTw5DsTVOWp5PYiFq9FOMtbRkQcsE1gAfdd1asl6Wza526JgVXLk72Srh4fCddS0ni5Jgx003wwZwPwS")
 STRIPE_LIVE_MODE = False  # Change to True in production
 DJSTRIPE_WEBHOOK_SECRET = "whsec_xxx"
 

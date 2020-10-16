@@ -25,6 +25,7 @@ class Listing(models.Model):
     email = models.EmailField(max_length=254)
     business_hours = models.TextField()
     about = models.TextField()
+    paid = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

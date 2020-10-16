@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.conf import settings
 from django.db.models import Q
 from django.db.models.functions import Lower
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 from .models import Listing, Category
 from .forms import ListingForm
@@ -15,6 +17,7 @@ from profiles.forms import UserProfileForm
 import stripe
 import json
 
+stripe.api_key = 'sk_test_R96LxBUcGDCLB4bxMLOPN6u900vzU7ySpx'
 
 def all_listings(request):
     """ A view to show all listings, including sorting and search queries """
@@ -76,6 +79,8 @@ def listing_detail(request, listing_id):
 
     return render(request, 'listings/listing_detail.html', context)
 
+from django.conf import settings # new
+from django.shortcuts import render
 
 def add_listing(request):
     stripe_public_key = settings.STRIPE_PUBLIC_KEY
@@ -86,7 +91,7 @@ def add_listing(request):
         if form.is_valid():
             listing = form.save()
             messages.success(request, 'Successfully added listing!')
-            return redirect(reverse('listing_detail', args=[listing.id]))
+            return redirect(reverse('listing_payment', args=[listing.id]))
         else:
             messages.error(request, 'Failed to add listing. Please ensure the form is valid.')
     else:
@@ -95,8 +100,8 @@ def add_listing(request):
     template = 'listings/add_listing.html'
     context = {
         'form': form,
-        'stripe_public_key': 'pk_test_0SMREd7Vdweb1MGRi8S0EycR00JVzSAs5O',
-        'client_secret': 'test client secret',
+        'stripe_public_key': 'pk_test_4KgVlDgFauT9Sfs8TtAN5Tjd00qMznyVjp',
+        'client_secret': 'sk_test_R96LxBUcGDCLB4bxMLOPN6u900vzU7ySpx',
     }
     return render(request, template, context)
 
@@ -129,3 +134,41 @@ def delete_listing(request, listing_id):
     listing.delete()
     messages.success(request, 'Listing deleted!')
     return redirect(reverse('listings'))
+    
+@csrf_exempt    
+def create_session(request):
+    try:
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[
+                {
+                    'price_data': {
+                        'currency': 'eur',
+                        'unit_amount': 5000,
+                        'product_data': {
+                            'name': 'Stubborn Attachments',
+                            'images': ['https://i.imgur.com/EHyR2nP.png'],
+                        },
+                    },
+                    'quantity': 1,
+                },
+            ],
+            mode='payment',
+            success_url="https://8000-a2ffc051-50db-4045-aa9f-031a0938f4ce.ws-eu01.gitpod.io/listings/add/",
+            cancel_url="https://8000-a2ffc051-50db-4045-aa9f-031a0938f4ce.ws-eu01.gitpod.io/listings/add/",
+            metadata={"listing_id":json.loads(request.body)["listing_id"]}
+        )
+        return JsonResponse({'id': checkout_session.id})
+    except Exception as e:
+        return JsonResponse({"error":str(e)})
+
+def listing_payment(request, listing_id):
+    """ A view to show individual listing details """
+
+    listing = get_object_or_404(Listing, pk=listing_id)
+
+    context = {
+        'listing': listing,
+    }
+
+    return render(request, 'listings/listing_payment.html', context)
