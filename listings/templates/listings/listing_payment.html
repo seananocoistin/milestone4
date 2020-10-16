@@ -9,6 +9,9 @@
     </div>
 {% endblock %}
 
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'static/css/base.css' %}">
+{% endblock %}
 
 {% block extra_js %}
     <script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>

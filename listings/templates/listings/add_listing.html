@@ -105,8 +105,10 @@ select option[value=""] {
                             {{ field }}
                         {% endif %}
                     {% endfor %}
-                    <button id="submit-button">Submit</button>
+                    <button class="btn btn-danger rounded-0" id="submit-button" type="submit"><i class="fa fa-check" aria-hidden="true"></i> Pay for Listing</button>
                 </form>
+                        <a class="btn rounded-0" style="background-color:#000000;color:white" href="{% url 'listings' %}"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancel</a> 
+                </div>
             </div>
         </div>
         </div>
