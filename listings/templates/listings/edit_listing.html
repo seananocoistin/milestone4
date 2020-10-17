@@ -32,11 +32,10 @@
                             {{ field }}
                         {% endif %}
                     {% endfor %}
-                    <div class="text-right">
+                    <div>
                         <button class="btn btn-danger rounded-0" type="submit"><i class="fa fa-floppy-o" aria-hidden="true"></i> Update the Listing</button>
-                        <a class="btn rounded-0" style="background-color:#000000;color:white" href="{% url 'listings' %}"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancel</a>
+                        <a class="btn rounded-0" style="background-color:#000000;color:white;margin:20px" href="{% url 'listings' %}"><i class="fa fa-times-circle" aria-hidden="true"></i> Cancel</a>
                     </div>
-                    <br>
                 </form>
             </div>
         </div>

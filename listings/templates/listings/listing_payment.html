@@ -10,7 +10,7 @@
 {% endblock %}
 
 {% block extra_css %}
-    <link rel="stylesheet" href="{% static 'static/css/base.css' %}">
+    <link rel="stylesheet" href="{% static '../static/css/base.css' %}">
 {% endblock %}
 
 {% block extra_js %}
@@ -19,7 +19,21 @@
 {% endblock %}
 
 {% block content %}
-   <button id="checkout-button">Checkout</button>
+    <div class="overlay"></div>
+    <div class="container w-50 mx-auto">
+        <div class="row">
+            <div class="col-12 col-md-6">
+                <hr>
+                <h2 class="logo-font mb-4">You have successfully created your listing</h2>
+                <h5 class="text-muted">Click the button below to now pay for your listing</h5>
+                <hr>
+            </div>
+        </div>
+   <button class="btn btn-danger rounded-0" id="checkout-button" type="submit"><i class="fa fa-check" aria-hidden="true"></i> Pay now</button>
+   <br>
+   </br>
+   <a><em>(You will be redirected to a payment page to complete the transaction.)</em></a>
+
 {% endblock %}
 
 {% block postloadjs %}

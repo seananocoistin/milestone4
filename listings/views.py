@@ -146,8 +146,8 @@ def create_session(request):
                         'currency': 'eur',
                         'unit_amount': 5000,
                         'product_data': {
-                            'name': 'Stubborn Attachments',
-                            'images': ['https://i.imgur.com/EHyR2nP.png'],
+                            'name': 'The Premium Business Directory',
+                            'image': 'https://imgur.com/gallery/HHOfop7',
                         },
                     },
                     'quantity': 1,
@@ -155,7 +155,7 @@ def create_session(request):
             ],
             mode='payment',
             success_url="https://8000-a2ffc051-50db-4045-aa9f-031a0938f4ce.ws-eu01.gitpod.io/listings/add/",
-            cancel_url="https://8000-a2ffc051-50db-4045-aa9f-031a0938f4ce.ws-eu01.gitpod.io/listings/add/",
+            cancel_url="https://8000-a2ffc051-50db-4045-aa9f-031a0938f4ce.ws-eu01.gitpod.io/listings/",
             metadata={"listing_id":json.loads(request.body)["listing_id"]}
         )
         return JsonResponse({'id': checkout_session.id})
