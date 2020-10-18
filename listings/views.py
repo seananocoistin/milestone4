@@ -22,7 +22,7 @@ stripe.api_key = 'sk_test_R96LxBUcGDCLB4bxMLOPN6u900vzU7ySpx'
 def all_listings(request):
     """ A view to show all listings, including sorting and search queries """
 
-    listings = Listing.objects.all()
+    listings = Listing.objects.filter(paid=True).all()
     query = None
     categories = None
     sort = None
@@ -89,7 +89,9 @@ def add_listing(request):
     if request.method == 'POST':
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
-            listing = form.save()
+            listing = form.save(commit=False)
+            listing.owner = request.user
+            listing.save()
             messages.success(request, 'Successfully added listing!')
             return redirect(reverse('listing_payment', args=[listing.id]))
         else:
@@ -108,30 +110,33 @@ def add_listing(request):
 
 def edit_listing(request, listing_id):
     listing = get_object_or_404(Listing, pk=listing_id)
-    if request.method == 'POST':
-        form = ListingForm(request.POST, request.FILES, instance=listing)
-        if form.is_valid():
-            form.save()
-            messages.success(request, 'Successfully updated listing!')
-            return redirect(reverse('listing_detail', args=[listing.id]))
+    if request.user.is_authenticated and (request.user.is_staff or listing.owner == request.user):
+        if request.method == 'POST':
+            form = ListingForm(request.POST, request.FILES, instance=listing)
+            if form.is_valid():
+                form.save()
+                messages.success(request, 'Successfully updated listing!')
+                return redirect(reverse('listing_detail', args=[listing.id]))
+            else:
+                messages.error(request, 'Failed to update listing. Please ensure the form is valid.')
         else:
-            messages.error(request, 'Failed to update listing. Please ensure the form is valid.')
-    else:
-        form = ListingForm(instance=listing)
-        messages.info(request, f'You are editing {listing.name}')
+            form = ListingForm(instance=listing)
+            messages.info(request, f'You are editing {listing.name}')
 
-    template = 'listings/edit_listing.html'
-    context = {
-        'form': form,
-        'listing': listing,
-    }
+        template = 'listings/edit_listing.html'
+        context = {
+            'form': form,
+            'listing': listing,
+        }
 
-    return render(request, template, context)
+        return render(request, template, context)
+    return HttpResponse(status=400)
 
 
 def delete_listing(request, listing_id):
     listing = get_object_or_404(Listing, pk=listing_id)
-    listing.delete()
+    if request.user.is_authenticated and (request.user.is_staff or listing.owner == request.user):
+        listing.delete()
     messages.success(request, 'Listing deleted!')
     return redirect(reverse('listings'))
     
@@ -147,14 +152,14 @@ def create_session(request):
                         'unit_amount': 5000,
                         'product_data': {
                             'name': 'The Premium Business Directory',
-                            'image': 'https://imgur.com/gallery/HHOfop7',
+                            'images': ['https://imgur.com/gallery/HHOfop7'],
                         },
                     },
                     'quantity': 1,
                 },
             ],
             mode='payment',
-            success_url="https://8000-a2ffc051-50db-4045-aa9f-031a0938f4ce.ws-eu01.gitpod.io/listings/add/",
+            success_url="https://8000-a2ffc051-50db-4045-aa9f-031a0938f4ce.ws-eu01.gitpod.io/listings/",
             cancel_url="https://8000-a2ffc051-50db-4045-aa9f-031a0938f4ce.ws-eu01.gitpod.io/listings/",
             metadata={"listing_id":json.loads(request.body)["listing_id"]}
         )
@@ -172,3 +177,25 @@ def listing_payment(request, listing_id):
     }
 
     return render(request, 'listings/listing_payment.html', context)
+
+@csrf_exempt
+def my_webhook_view(request):
+  payload = request.body
+  event = None
+
+  try:
+    event = stripe.Event.construct_from(
+      json.loads(payload), stripe.api_key
+    )
+  except ValueError as e:
+    # Invalid payload
+    return HttpResponse(status=400)
+
+  # Handle the event
+  if event.type == 'checkout.session.completed':
+    session = event.data.object
+    listing_id = int(session.metadata.listing_id)
+    listing = Listing.objects.get(pk=listing_id)
+    listing.paid = True
+    listing.save()
+  return HttpResponse(status=200)

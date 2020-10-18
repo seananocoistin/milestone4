@@ -82,7 +82,7 @@
                                             </p>
                                             {% endif %}
                                             <br>
-                                            {% if request.user.is_superuser %}
+                                            {% if request.user.is_superuser or listing.owner == request.user %}
                                                 <div class="ml-3">
                                                     <a class="btn btn-danger rounded-0" href="{% url 'edit_listing' listing.id %}"><i class="fa fa-pencil" aria-hidden="true"></i> Edit</a> 
                                                     <a class="btn btn-dark rounded-0" href="{% url 'delete_listing' listing.id %}"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</a>

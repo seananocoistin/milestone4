@@ -1,5 +1,6 @@
 from django.db import models
 from phone_field import PhoneField
+from django.contrib.auth.models import User
 
 class Category(models.Model):
 
@@ -26,6 +27,7 @@ class Listing(models.Model):
     business_hours = models.TextField()
     about = models.TextField()
     paid = models.BooleanField(default=False)
+    owner = models.ForeignKey(User,on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name

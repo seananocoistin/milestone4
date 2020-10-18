@@ -8,5 +8,6 @@ urlpatterns = [
     path('edit/<int:listing_id>/', views.edit_listing, name='edit_listing'),
     path('delete/<int:listing_id>/', views.delete_listing, name='delete_listing'),
     path('create-session', views.create_session),
-    path('payment/<int:listing_id>', views.listing_payment, name='listing_payment')
+    path('payment/<int:listing_id>', views.listing_payment, name='listing_payment'),
+    path('stripe_webhook', views.my_webhook_view, name='stripe_webhook')
 ]
