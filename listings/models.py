@@ -22,7 +22,7 @@ class Listing(models.Model):
     name = models.CharField(max_length=254)
     address = models.CharField(max_length=254)
     phone = PhoneField(blank=True, help_text='Contact phone number')
-    website = models.URLField(max_length=200)
+    website = models.CharField(max_length=200)
     email = models.EmailField(max_length=254)
     business_hours = models.TextField()
     about = models.TextField()
