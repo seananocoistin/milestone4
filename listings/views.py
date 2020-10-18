@@ -71,9 +71,9 @@ def all_listings(request):
 def all_listings(request):
     """ A view to show individual owners' listings """
 
-    listings = Listing.objects.filter(request.ownerid)
+    listings = Listing.objects.filter(owner=request.user).all()
     context = {
-        'listings': listings,
+        'listings':listings,
     }
 
     return render(request, 'listings/listings.html', context)
