@@ -73,6 +73,7 @@ The testing consisted of three areas:
 
 The static and media files would not show up from AWS. This is infuriating as the keys and code are correct. The rough solution for that was to use inline CSS styling and to provide a direct link to the image that is the background on the home page. It is shocking that AWS would let me down like this but there is a way to get around it.
 
+Having tried to deploy to Heroku, the latter would not work as it claims to work. Heroku is excrebable as a means to deploy this project. It never worked the way that it should have and is best to be avoided and never used. That is why I chose to use private hosting which is a much better way to host a website like this. Everything is hosted in the one location and there is no reliance on various platforms to make it function properly.
 
 ## Wireframes
 See the wireframes in the Github folders.
