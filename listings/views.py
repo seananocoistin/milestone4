@@ -68,17 +68,6 @@ def all_listings(request):
 
     return render(request, 'listings/listings.html', context)
 
-def all_listings(request):
-    """ A view to show individual owners' listings """
-
-    listings = Listing.objects.filter(owner=request.user).all()
-    context = {
-        'listings':listings,
-    }
-
-    return render(request, 'listings/listings.html', context)
-
-
 def listing_detail(request, listing_id):
     """ A view to show individual listing details """
 

@@ -52,10 +52,11 @@ The information in the entries should be clearly laid out and easy to read.
 I was inspired to make the business directory as I came across a business directory that was very clumsy and shoddy in the way that it was designed. I particularly like the [Manta business directory](http://www.manta.com).
 
 ## Testing
-The testing consisted of three areas:
+The testing consisted of the following areas:
  - (i) Registration and logging in
  - (ii) Adding a listing
- - (iii) Stripe payments
+ - (iii) Stripe testing
+ - (iv) Deployment
 
  (i) Registration and logging in
 
@@ -63,17 +64,17 @@ The testing consisted of three areas:
  
  (ii) Adding a listing
 
- When users sign in, they are presented with a Create Listing page where they can fill out a form to create a listing in directory. The form is easy to use and it allows the business owner lots of space in the textarea to describe their business in their own words.
+ When users sign in, they are presented with a Create Listing page where they can fill out a form to create a listing in directory. The form is easy to use and it allows the business owner lots of space in the text area to describe their business in their own words.
  
- (iii) Stripe payments
+ (iii) Stripe testing
 
- [Stripe test image](https://github.com/seananocoistin/milestone4/blob/master/projectimages/stripetest.png)
+Setting up the Stripe payment system involved a large amount of work and testing. It was found that the CSS of Stripe and the project were at odds with each other so the best thing was to change the Stripe system so that it would redirect the paying user to Stripe's own checkout page in order to complete the transaction and, once complete, the user would be returned to the listings' page. This is painless for the user and does not cause confusion or delay. Whilst trying the approach of embedding the Stripe payment form in the page, it caused too much technical problems and was not viable as an option. Stripe is to be commended for allowing such a seamless transition from one site to their own checkout page and then a seamless return to the original site. 
+ 
+ (iv) Deployment Testing
 
- The user needs to pay for the listing. This is kept as easy as possible by creating and paying for the listing on the same page. The Stripe system was tested for incorrect credit card numbers (see image).
-
-The static and media files would not show up from AWS. This is infuriating as the keys and code are correct. The rough solution for that was to use inline CSS styling and to provide a direct link to the image that is the background on the home page. It is shocking that AWS would let me down like this but there is a way to get around it.
-
-Having tried to deploy to Heroku, the latter would not work as it claims to work. Heroku is excrebable as a means to deploy this project. It never worked the way that it should have and is best to be avoided and never used. That is why I chose to use private hosting which is a much better way to host a website like this. Everything is hosted in the one location and there is no reliance on various platforms to make it function properly.
+It was recommended to use Heroku and AWS to deploy and host the project. Having tried to deploy to Heroku, it would not work as it claims to work. Heroku is excrebable as a means to deploy this project. It never worked the way that it should have and is best to be avoided. The static and media files would not show up from AWS. This is infuriating as the keys and code were correct. The rough solution for that was to use inline CSS styling and to provide a direct link to the image that is the background on the home page. AWS's poor performance meant that it was rejected as a means of hosting.
+In this [article about Django hosting](https://www.hostingadvice.com/how-to/best-django-hosting/), the author wrote "_The big three cloud providers — Amazon Web Services, Microsoft Azure, and Google Cloud — all support robust Django development, but we tend to reserve those platforms for experienced developers with enterprise-grade hosting requirements._" This project is far from needing enterprise-grade hosting requirements and I, as a developer, am far from being an experienced developer, so I prefer something that works easily and requires less of a learning curve to set it up and maintain it.
+I also tried www.pythonanywhere.com but this did not meet my expectations despite initially looking promising. That is why I chose to buy a cheap URL www.premiumbd.site and use private hosting which is a much better way to host a website like this. Everything is hosted in the one location and there is no reliance on various platforms to make it function properly.
 
 ## Wireframes
 See the wireframes in the Github folders.
@@ -87,6 +88,7 @@ The current website, as is stands, is to represent how a directory would functio
 - [HTML5](https://en.wikipedia.org/wiki/HTML5)
 - [CSS3](https://en.wikipedia.org/wiki/Cascading_Style_Sheets)
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript)
+- [Python](https://www.python.org/)
 
 The technologies that the site was built and designed with are:
 
@@ -110,9 +112,9 @@ The technologies that the site was built and designed with are:
 
 [Stripe](https.stripe.com) - used to process payments on the website.
 
-[Heroku](https.heroku.com) - used to host the website.
+[Rose Hosting](https://www.rosehosting.com/) - the hosting company that hosts the website.
 
-[Amazon Web Services](https://aws.amazon.com/) - used to host the static and media files but it did not work for this project :-(
+[GoDaddy](https://www.godaddy.ie/) - the domain company used to buy www.premiumbd.site from.
 
 [Django Secret Key Generator](https://miniwebtool.com/django-secret-key-generator/) - used to generate a secret key for Django.
 
@@ -122,9 +124,6 @@ The technologies that the site was built and designed with are:
 
 Code for Django Phone Field
 https://pypi.org/project/django-phone-field/
-
-Code for Django website field
-https://www.geeksforgeeks.org/urlfield-django-models/
 
 
 ## Author
